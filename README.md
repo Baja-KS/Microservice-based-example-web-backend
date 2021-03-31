@@ -13,3 +13,7 @@ An example of microservice-based and docker-containerized web backend app
   - App will start only after the databases have been created,after few seconds or so if they havent been (if there are no db service volumes)
   - Product Service is on port 8002 -- [Product Service Docs](http://localhost:8002/docs)
   - Order Service is on port 8001 -- [Order Service Docs](http://localhost:8001/docs)
+ # Migrations:
+  - Alembic migration tool used for product and order services
+  - Adding new migration script: `(sudo) docker-compose run <servicename (product_service,order_service)>  alembic revision --autogenerate -m "<filename>"`
+  - Running migrations : ``(sudo) docker-compose run <servicename (product_service,order_service)>  alembic upgrade head`
