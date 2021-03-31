@@ -16,4 +16,4 @@ An example of microservice-based and docker-containerized web backend app
  # Migrations:
   - Alembic migration tool used for product and order services
   - Adding new migration script: `(sudo) docker-compose run <servicename (product_service,order_service)>  alembic revision --autogenerate -m "<filename>"`
-  - Running migrations : ``(sudo) docker-compose run <servicename (product_service,order_service)>  alembic upgrade head`
+  - Running migrations : `(sudo) docker-compose run <servicename (product_service,order_service)>  alembic upgrade head`
