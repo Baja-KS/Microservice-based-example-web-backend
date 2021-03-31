@@ -1,0 +1,49 @@
+version: '3.7'
+
+services:
+  order_service:
+    build: ./OrderService
+    command: bash -c "uvicorn app.main:app --reload --host 0.0.0.0 --port 8000 --reload"
+    volumes:
+    - ./OrderService/:/app/
+    ports:
+    - "8001:8000"
+    environment:
+      - DB_CONN=postgresql://orderdb:orderdbpass@order_db/orders
+    depends_on:
+      - order_db
+    restart: always
+  order_db:
+    image: library/postgres:12.1
+    volumes:
+    - postgres_order_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=orderdb
+      - POSTGRES_PASSWORD=orderdbpass
+      - POSTGRES_DB=orders
+    restart: always
+  product_service:
+    build:  ./ProductService
+    command: bash -c "uvicorn app.main:app --reload --host 0.0.0.0 --port 8000 --reload"
+    volumes:
+    - ./ProductService/:/app/
+    ports:
+    - "8002:8000"
+    environment:
+      - DB_CONN=postgresql://productdb:productdbpass@product_db/products
+    depends_on:
+      - product_db
+    restart: always
+  product_db:
+    image: library/postgres:12.1
+    volumes:
+      - postgres_products_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=productdb
+      - POSTGRES_PASSWORD=productdbpass
+      - POSTGRES_DB=products
+    restart: always
+
+volumes:
+  postgres_order_data:
+  postgres_products_data:
