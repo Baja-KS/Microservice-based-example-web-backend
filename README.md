@@ -11,5 +11,5 @@ An example of microservice-based and docker-containerized web backend app
 # Run:
   - Run `docker-compose up -d` (or `sudo docker-compose up -d`) in the main app directory
   - App will start only after the databases have been created,after few seconds or so if they havent been (if there are no db service volumes)
-  - Product Service is on port 8002 -- [Product Service Docs](localhost:8002/docs)
-  - Order Service is on port 8001 -- [Order Service Docs](localhost:8001/docs)
+  - Product Service is on port 8002 -- [Product Service Docs](http://localhost:8002/docs)
+  - Order Service is on port 8001 -- [Order Service Docs](http://localhost:8001/docs)
